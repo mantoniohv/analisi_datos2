@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import plotly as px
 
 # Leer el archivo CSV
 df = pd.read_csv('C:/Users/manto/proyecto2/vehicles_us.csv')
