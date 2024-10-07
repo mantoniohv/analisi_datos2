@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
-import plotly as px
+import plotly.graph_objects as go
 
 # Leer el archivo CSV
-df = pd.read_csv('vehicles_us.csv')
+df = pd.read_csv('data/vehicles_us.csv')
 
 # Crear un encabezado
 st.header("Análisis Exploratorio de Datos con Streamlit")
@@ -14,8 +14,8 @@ hist_button = st.button('Construir histograma')
 if hist_button:  # Al hacer clic en el botón
     st.write('Creación de un histograma para el conjunto de datos')
     
-    # Crear un histograma utilizando una columna válida, por ejemplo 'odometer'
-    fig = px.histogram(df, x="odometer", title="Histograma del Kilometraje (odometer)")
+    # Crear un histograma usando Plotly Graph Objects
+    fig = go.Figure(data=[go.Histogram(x=df['odometer'])])
     
     # Mostrar el gráfico de histograma
     st.plotly_chart(fig, use_container_width=True)
@@ -26,10 +26,8 @@ scatter_button = st.button('Construir gráfico de dispersión')
 if scatter_button:  # Al hacer clic en el botón
     st.write('Creación de un gráfico de dispersión para el conjunto de datos')
     
-    # Crear un gráfico de dispersión usando las columnas 'price' y 'model_year'
-    fig = px.scatter(df, x="model_year", y="price", title="Gráfico de Dispersión entre Año y Precio")
+    # Crear un gráfico de dispersión usando Plotly Graph Objects
+    fig = go.Figure(data=go.Scatter(x=df['model_year'], y=df['price'], mode='markers'))
     
     # Mostrar el gráfico de dispersión
     st.plotly_chart(fig, use_container_width=True)
-
-
